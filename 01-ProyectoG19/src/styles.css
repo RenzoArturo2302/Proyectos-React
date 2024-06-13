@@ -1,0 +1,34 @@
+/* Fonts que quizá usaré */
+@import url("https://fonts.googleapis.com/css2?family=Tiny5&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Tiny5&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Tiny5&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+/* Reset total */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Outfit", sans-serif;
+  /* border: 1px solid red; */
+}
+
+/* Variables  */
+:root {
+  --fondo: #dadada;
+  --sidebar: #393e46;
+  /* --color3: #e0aed0; */
+  --buttons-color: #0f9ca4;
+  --buttons-color-hover: #02b6c0;
+  --buttons-font-color: #222831;
+  --font: #f2f2f2;
+  --font-menu: #aaaaaa;
+  --font-linea: #747474;
+}
+
+/* Elemento que encierra todo, se encuentra en el body */
+#root {
+  /* border: 2px red solid; */
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  background-color: var(--fondo);
+}

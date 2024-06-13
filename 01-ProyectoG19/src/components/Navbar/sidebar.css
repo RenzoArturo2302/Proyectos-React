@@ -1,0 +1,140 @@
+.sidebar {
+  width: 250px;
+  height: 100%;
+  overflow: hidden;
+  padding: 20px 15px;
+  background-color: var(--sidebar);
+  transition: width 0.5s ease;
+}
+
+.mini-sidebar {
+  width: 80px;
+}
+
+/* Logo de la página */
+.sidebar .logo {
+  display: flex;
+  /* border: 2px solid black; */
+  width: 100%;
+  height: 3.5rem;
+  align-items: center;
+  font-weight: 700;
+  color: var(--font);
+
+  /* Para que parezca que se puede clickear */
+  cursor: pointer;
+  margin-bottom: 40px;
+}
+
+/* Según la documentación de ion-icon, así se puede estilizar. No se le puede agregar clases */
+.sidebar .logo ion-icon {
+  min-width: 3rem;
+  font-size: 3rem;
+}
+
+.sidebar span {
+  margin-left: 0.15rem;
+  text-align: center;
+  font-size: 1.45rem;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  white-space: nowrap;
+}
+
+.sidebar span.dissapear {
+  opacity: 0;
+  width: 0;
+  margin: 0rem;
+}
+
+.sidebar .button-sidebar {
+  /* Tamaño y ubicación */
+  width: 100%;
+  height: 2.75rem;
+
+  /* Disposición */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  /* Otros */
+  border-radius: 10px;
+  background-color: var(--buttons-color);
+  color: var(--buttons-font-color);
+  font-weight: 600;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.sidebar .button-sidebar:hover {
+  background-color: var(--buttons-color-hover);
+}
+
+.sidebar .button-sidebar ion-icon {
+  min-width: 20px;
+  font-size: 1.5rem;
+}
+
+.sidebar .button-sidebar span {
+  font-size: 1.1rem;
+}
+
+.sidebar .Navbar ul li {
+  list-style: none;
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.sidebar .Navbar ul li a {
+  text-decoration: none;
+
+  display: flex;
+  width: 100%;
+  height: 2.85rem;
+  align-items: center;
+  border-radius: 10px;
+  background-color: var(--sidebar);
+  color: var(--font-menu);
+  cursor: pointer;
+}
+
+.sidebar .Navbar ul li a ion-icon {
+  min-width: 50px;
+  font-size: 20px;
+}
+
+.sidebar .Navbar ul li a span {
+  font-size: 1.1rem;
+}
+
+.sidebar .Navbar ul li a:hover {
+  color: var(--font);
+}
+
+.sidebar .sidebar-linea {
+  width: 100%;
+  height: 1px;
+  background-color: var(--font-linea);
+}
+
+.sidebar .dark-mode-sidebar {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.sidebar .dark-mode-sidebar .info {
+  width: 150px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  color: var(--font-menu);
+}
+
+.sidebar .dark-mode-sidebar .info span {
+  font-size: 1.1rem;
+}
+
+.sidebar .dark-mode-sidebar .info ion-icon {
+  min-width: 50px;
+  font-size: 20px;
+}
