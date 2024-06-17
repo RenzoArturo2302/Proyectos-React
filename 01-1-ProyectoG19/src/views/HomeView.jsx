@@ -1,13 +1,13 @@
-import React from 'react'
-import LogoNavbar from '../components/Navbar/LogoNavbar'
-import PagesNavbar from '../components/Navbar/PagesNavbar'
-import Sidebar from '../components/Navbar/Sidebar'
-const HomeView = () => {
-  return (
-      <Sidebar/>
-    // <><LogoNavbar/>
-    // <PagesNavbar/></>
-  )
-}
+import React from "react";
 
-export default HomeView
+import Sidebar from "../components/Navbar/Sidebar";
+const HomeView = ({ darkModeState, setDarkModeState }) => {
+  return (
+    <Sidebar
+      darkModeState={darkModeState}
+      setDarkModeState={setDarkModeState}
+    />
+  );
+};
+
+export default HomeView;

@@ -25,10 +25,22 @@
 }
 
 /* Elemento que encierra todo, se encuentra en el body */
-#root {
+.App {
   /* border: 2px red solid; */
   width: 100%;
   height: 100vh;
   display: flex;
   background-color: var(--fondo);
+}
+
+[data-theme="darkmode"] {
+  --fondo: #2b194d;
+  --sidebar: #e00f4e;
+  /* --color3: #e0aed0; */
+  --buttons-color: #0c2f31;
+  --buttons-color-hover: #02b6c0;
+  --buttons-font-color: #dde5f0;
+  --font: #f2f2f2;
+  --font-menu: #aaaaaa;
+  --font-linea: #747474;
 }

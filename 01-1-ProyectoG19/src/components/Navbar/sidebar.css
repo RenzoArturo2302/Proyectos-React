@@ -82,7 +82,8 @@
 .sidebar .Navbar ul li {
   list-style: none;
   display: flex;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  justify-content: space-between;
 }
 
 .sidebar .Navbar ul li a {
@@ -108,7 +109,7 @@
 }
 
 .sidebar .Navbar ul li a:hover {
-  color: var(--font);
+  background-color: var(--buttons-color);
 }
 
 .sidebar .sidebar-linea {
@@ -120,13 +121,17 @@
 .sidebar .dark-mode-sidebar {
   width: 100%;
   border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .sidebar .dark-mode-sidebar .info {
-  width: 150px;
+  /* border: 1px solid red; */
+  width: 160px;
   height: 45px;
   display: flex;
   align-items: center;
+  overflow: hidden;
   color: var(--font-menu);
 }
 
@@ -137,4 +142,32 @@
 .sidebar .dark-mode-sidebar .info ion-icon {
   min-width: 50px;
   font-size: 20px;
+}
+
+.sidebar .dark-mode-sidebar .switch-sidebar {
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 50px;
+  height: 45px;
+}
+
+.sidebar .dark-mode-sidebar .switch-sidebar .base {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 35px;
+  height: 20px;
+  background-color: green;
+  border-radius: 50px;
+}
+
+.sidebar .dark-mode-sidebar .switch-sidebar .circle {
+  position: absolute;
+  width: 18px;
+  height: 90%;
+  background-color: orange;
+  border-radius: 50%;
+  left: 2px;
 }
