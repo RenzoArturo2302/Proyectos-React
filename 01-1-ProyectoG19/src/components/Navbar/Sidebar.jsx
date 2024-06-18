@@ -1,63 +1,49 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./sidebar.css";
 import { DarkLightMode } from "../../contexts/DarkLightModeContext";
 import { SidebarUnfolded } from "../../contexts/SidebarUnfoldedContext";
+import { menuList } from "../../utils/menuElements";
+
 // Se utilizó ion-icons https://ionic.io/ionicons
 
 const Sidebar = () => {
   const { darkModeState, setDarkModeState } = useContext(DarkLightMode);
   // Estado para alterar el estilo de la sibedar. Classname condicional
   const { sidebarState, setSidebarState } = useContext(SidebarUnfolded);
-  const SessionAuth = false;
+  const [miniSidebarState, setMiniSidebarState] = useState(false);
+  const [sessionAuth, setSessionAuth] = useState(false);
 
-  const menuElements = [
-    { id: 1, iconName: "home-outline", menuElementName: "Inicio" },
-    {
-      id: 2,
-      iconName: "library-outline",
-      menuElementName: "Mis películas",
-    },
-    {
-      id: 3,
-      iconName: "list-outline",
-      menuElementName: "Categorías",
-    },
-    {
-      id: 4,
-      iconName: "pricetags-outline",
-      menuElementName: "Promociones",
-    },
-    {
-      id: 5,
-      iconName: "star-outline",
-      menuElementName: "Novedades",
-    },
-    {
-      id: 6,
-      iconName: "trending-up-outline",
-      menuElementName: "Tendencias",
-    },
-    {
-      id: 7,
-      iconName: "search-outline",
-      menuElementName: "Buscar",
-    },
-    {
-      id: 8,
-      iconName: "information-outline",
-      menuElementName: "Ayuda",
-    },
-    {
-      id: 9,
-      iconName: "people-outline",
-      menuElementName: "Sobre Nosotros",
-    },
-  ];
+  const menuConditional = (sidebarState, miniSidebarState) => {
+    if (!sidebarState && !miniSidebarState) {
+      return "sidebar";
+    } else if (sidebarState && miniSidebarState) {
+      return "sidebar mini-sidebar max-barra-lateral";
+    } else if (sidebarState && !miniSidebarState) {
+      return "sidebar mini-sidebar";
+    } else {
+      return "sidebar max-barra-lateral";
+    }
+  };
+
+  const menuElements = menuList(sessionAuth);
 
   return (
     <>
-      <div></div>
-      <div className={!sidebarState ? "sidebar" : "sidebar mini-sidebar"}>
+      <div
+        className="menu"
+        onClick={() => {
+          setMiniSidebarState(!miniSidebarState);
+        }}
+      >
+        <div className={miniSidebarState ? "change-display" : ""}>
+          <ion-icon name="grid-outline"></ion-icon>
+        </div>
+        <div className={miniSidebarState ? "" : "change-display"}>
+          <ion-icon name="close-outline"></ion-icon>
+        </div>
+      </div>
+      {/* <div className={!sidebarState ? "sidebar" : "sidebar mini-sidebar"}> */}
+      <div className={menuConditional(sidebarState, miniSidebarState)}>
         <div>
           <div
             className="logo"
@@ -119,21 +105,32 @@ const Sidebar = () => {
             </div>
           </div>
           <div className="usuario">
-            {SessionAuth ? (
+            {sessionAuth ? (
               <>
                 <img src="src/assets/img/news-800x500-3.jpg" alt="" />
                 <div className="info-usuario">
                   <div className="nombre-email">
                     <span className="nombre">Renzo Arturo</span>
-                    <span className="email">renzoarturo12345@gmail.com</span>
+                    <span className="config">Configurar cuenta</span>
                   </div>
-                  <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+
+                  <ion-icon
+                    name="log-out-outline"
+                    onClick={() => {
+                      setSessionAuth(false);
+                    }}
+                  ></ion-icon>
                 </div>
               </>
             ) : (
               <>
                 <div className="login-register">
-                  <div className="login">
+                  <div
+                    className="login"
+                    onClick={() => {
+                      setSessionAuth(true);
+                    }}
+                  >
                     <ion-icon name="log-in-outline"></ion-icon>
                     <span className={!sidebarState ? "" : "dissapear"}>
                       Iniciar Sesión

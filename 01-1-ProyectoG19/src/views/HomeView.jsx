@@ -37,19 +37,6 @@ const HomeView = () => {
       labore officia, laborum corrupti accusantium natus temporibus perferendis
       omnis eligendi harum unde inventore? Qui, odio.100 Lorem ipsum dolor sit
       amet consectetur adipisicing elit. Recusandae mollitia, sequi minus quasi
-      {/* eaque magnam labore officia, laborum corrupti accusantium natus temporibus
-      perferendis omnis eligendi harum unde inventore? Qui, odio.100 Lorem ipsum
-      dolor sit amet consectetur adipisicing elit. Recusandae mollitia, sequi
-      minus quasi eaque magnam labore officia, laborum corrupti accusantium
-      natus temporibus perferendis omnis eligendi harum unde inventore? Qui,
-      odio.100 Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Recusandae mollitia, sequi minus quasi eaque magnam labore officia,
-      laborum corrupti accusantium natus temporibus perferendis omnis eligendi
-      harum unde inventore? Qui, odio.100 Lorem ipsum dolor sit amet consectetur
-      adipisicing elit. Recusandae mollitia, sequi minus quasi eaque magnam
-      labore officia, laborum corrupti accusantium natus temporibus perferendis
-      omnis eligendi harum unde inventore? Qui, odio.100 Lorem ipsum dolor sit
-      amet consectetur adipisicing elit. Recusandae mollitia, sequi minus quasi
       eaque magnam labore officia, laborum corrupti accusantium natus temporibus
       perferendis omnis eligendi harum unde inventore? Qui, odio.100 Lorem ipsum
       dolor sit amet consectetur adipisicing elit. Recusandae mollitia, sequi
@@ -178,7 +165,20 @@ const HomeView = () => {
       harum unde inventore? Qui, odio.100 Lorem ipsum dolor sit amet consectetur
       adipisicing elit. Recusandae mollitia, sequi minus quasi eaque magnam
       labore officia, laborum corrupti accusantium natus temporibus perferendis
-      omnis eligendi harum unde inventore? Qui, odio.100 Lorem i */}
+      omnis eligendi harum unde inventore? Qui, odio.100 Lorem ipsum dolor sit
+      amet consectetur adipisicing elit. Recusandae mollitia, sequi minus quasi
+      eaque magnam labore officia, laborum corrupti accusantium natus temporibus
+      perferendis omnis eligendi harum unde inventore? Qui, odio.100 Lorem ipsum
+      dolor sit amet consectetur adipisicing elit. Recusandae mollitia, sequi
+      minus quasi eaque magnam labore officia, laborum corrupti accusantium
+      natus temporibus perferendis omnis eligendi harum unde inventore? Qui,
+      odio.100 Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      Recusandae mollitia, sequi minus quasi eaque magnam labore officia,
+      laborum corrupti accusantium natus temporibus perferendis omnis eligendi
+      harum unde inventore? Qui, odio.100 Lorem ipsum dolor sit amet consectetur
+      adipisicing elit. Recusandae mollitia, sequi minus quasi eaque magnam
+      labore officia, laborum corrupti accusantium natus temporibus perferendis
+      omnis eligendi harum unde inventore? Qui, odio.100 Lorem i
     </div>
   );
 };

@@ -1,3 +1,27 @@
+.menu {
+  background-color: var(--buttons-color);
+  color: var(--buttons-font-color);
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  cursor: pointer;
+  right: 15px;
+  top: 15px;
+  z-index: 100;
+}
+
+.menu:hover {
+  background-color: var(--buttons-color-hover);
+}
+.menu div {
+  display: flex;
+}
+
 .sidebar {
   position: fixed;
   width: 250px;
@@ -5,12 +29,12 @@
   overflow: hidden;
   padding: 20px 15px;
   background-color: var(--sidebar);
-  transition: width 0.5s ease;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   /* margin-right: 10px; */
-  transition: width 0.7s ease, background-color 0.5s ease;
+  transition: width 0.5s ease, background-color 0.3s ease;
 }
 
 .sidebar > div:nth-child(1),
@@ -104,12 +128,12 @@
 }
 
 .sidebar .Navbar::-webkit-scrollbar-thumb {
-  background-color: black;
+  background-color: var(--menu-navigation-bar);
   border-radius: 5px;
 }
 
 .sidebar .Navbar::-webkit-scrollbar-thumb:hover {
-  background-color: red;
+  background-color: var(--menu-navigation-bar-hover);
 }
 
 .sidebar .Navbar ul li {
@@ -142,7 +166,7 @@
 }
 
 .sidebar .Navbar ul li a:hover {
-  background-color: var(--buttons-color);
+  background-color: var(--buttons-color-hover);
 }
 
 .sidebar .sidebar-linea {
@@ -229,6 +253,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   color: var(--font);
   overflow: hidden;
   white-space: nowrap;
@@ -254,15 +279,33 @@
 .sidebar .usuario .info-usuario .nombre-email .nombre {
   font-size: 15px;
   font-weight: 600;
-  /* text-align: left; */
+  padding: 2px;
 }
 
-.sidebar .usuario .info-usuario .nombre-email .email {
+.sidebar .usuario .info-usuario .nombre-email .config {
   font-size: 13px;
+  cursor: pointer;
+  /* border: 1px red solid; */
+  text-decoration: underline;
+  border-radius: 5px;
+  padding: 2px;
+  /* border: 1px red solid; */
+}
+
+.sidebar .usuario .info-usuario .nombre-email .config:hover {
+  color: var(--buttons-color-hover);
 }
 
 .sidebar .usuario .info-usuario ion-icon {
-  font-size: 20px;
+  padding: 4px;
+  min-width: 35px;
+  font-size: 25px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.sidebar .usuario .info-usuario ion-icon:hover {
+  background-color: var(--buttons-color-hover);
 }
 
 .sidebar .login-register {
@@ -295,7 +338,7 @@
 
 .sidebar .login-register .login:hover,
 .sidebar .login-register .register:hover {
-  background-color: var(--buttons-color);
+  background-color: var(--buttons-color-hover);
 }
 
 /* Responsive */
@@ -311,7 +354,25 @@
 
 @media (max-width: 600px) {
   .sidebar {
-    position: absolute;
+    position: fixed;
     left: -250px;
+    transition: width 0.5s ease, left 0.5s ease;
+  }
+
+  .sidebar.mini-sidebar {
+    transition: left 0.3s ease, width 0.5s ease;
+    left: -80px;
+  }
+
+  .sidebar.max-barra-lateral {
+    left: 0;
+  }
+
+  .menu {
+    display: flex;
+  }
+
+  .menu div.change-display {
+    display: none;
   }
 }
