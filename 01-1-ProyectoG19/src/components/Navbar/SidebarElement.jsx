@@ -1,7 +1,12 @@
 import React from "react";
 
-const SidebarElement = () => {
-  return <div>SidebarElement</div>;
+const SidebarElement = (iconName, menuElementName) => {
+  return (
+    <>
+      <ion-icon name={iconName}></ion-icon>
+      <span className={sidebarState ? "" : "dissapear"}>{menuElementName}</span>
+    </>
+  );
 };
 
 export default SidebarElement;

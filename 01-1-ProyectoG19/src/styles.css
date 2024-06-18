@@ -15,32 +15,49 @@
 :root {
   --fondo: #dadada;
   --sidebar: #393e46;
-  /* --color3: #e0aed0; */
   --buttons-color: #0f9ca4;
   --buttons-color-hover: #02b6c0;
   --buttons-font-color: #222831;
   --font: #f2f2f2;
-  --font-menu: #aaaaaa;
+  --font-menu: #f2f2f2;
   --font-linea: #747474;
+  --switch-base: #dadada;
+  --switch-circulo: #393e46;
 }
 
 /* Elemento que encierra todo, se encuentra en el body */
+/* 
+#root {
+} */
+
 .App {
-  /* border: 2px red solid; */
-  width: 100%;
-  height: 100vh;
-  display: flex;
+  min-width: 100vw;
+  min-height: 100vh;
   background-color: var(--fondo);
 }
 
+main {
+  background-color: red;
+}
+
 [data-theme="darkmode"] {
-  --fondo: #2b194d;
+  --fondo: #2c2a2f;
   --sidebar: #e00f4e;
-  /* --color3: #e0aed0; */
-  --buttons-color: #0c2f31;
-  --buttons-color-hover: #02b6c0;
+  --buttons-color: rgb(47, 38, 63);
+  --buttons-color-hover: #513486;
   --buttons-font-color: #dde5f0;
-  --font: #f2f2f2;
-  --font-menu: #aaaaaa;
+  --font: #dadada;
+  --font-menu: #dadada;
   --font-linea: #747474;
+  --switch-base: #2c2a2f;
+  --switch-circulo: #dadada;
+}
+
+.page {
+  margin-left: 250px;
+  padding-left: 20px;
+}
+
+.min-page {
+  margin-left: 80px;
 }

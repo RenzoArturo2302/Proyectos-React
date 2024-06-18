@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import HomeView from "./views/HomeView";
-
 import "./styles.css";
+import { DarkLightMode } from "./contexts/DarkLightModeContext";
+
+import Navigation from "./views/Navigation";
 
 const App = () => {
-  const [darkModeState, setDarkModeState] = useState(false);
-  console.log(darkModeState);
+  const { darkModeState, setDarkModeState } = useContext(DarkLightMode);
+  // console.log(darkModeState);
   return (
     <div className="App" data-theme={darkModeState ? "darkmode" : ""}>
-      <HomeView
-        darkModeState={darkModeState}
-        setDarkModeState={setDarkModeState}
-      />
+      <Navigation />
+      <div className="page min-page">
+        <HomeView />
+      </div>
     </div>
   );
 };
