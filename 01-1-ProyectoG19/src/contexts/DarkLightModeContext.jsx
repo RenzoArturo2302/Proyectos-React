@@ -5,17 +5,14 @@ import { getStorage, saveStorage } from "../utils/localStorage";
 const DarkLightMode = createContext();
 
 const DarkLightModeContext = (props) => {
-  const [darkModeState, setDarkModeState] = useState(false);
+  // Verificar si ya existe un registre en el localState, si es así, se obtiene el valor y se asigna con useState
+  const [darkModeState, setDarkModeState] = useState(() => {
+    const storage = getStorage("darkMode");
+    return storage ? storage : false;
+  });
 
   const valor = { darkModeState, setDarkModeState };
-  // Verificar si ya existe un registre en el localState, si es así, se obtiene el valor y se asigna con useState
-  useEffect(() => {
-    const storage = getStorage("darkMode");
 
-    if (storage) {
-      setDarkModeState(storage);
-    }
-  }, []);
   // Guardar el estado en el local storage al variar el valor de darkModeState
   useEffect(() => {
     saveStorage("darkMode", darkModeState);

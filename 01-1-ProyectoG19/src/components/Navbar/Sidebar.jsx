@@ -1,34 +1,41 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import "./sidebar.css";
 import { DarkLightMode } from "../../contexts/DarkLightModeContext";
 import { SidebarUnfolded } from "../../contexts/SidebarUnfoldedContext";
-import { menuList } from "../../utils/menuElements";
+import { menuList, menuCond } from "../../utils/menuElements";
+import { Link, useNavigate } from "react-router-dom";
 
+// Para el logOut
+import { useAuth } from "../../contexts/AuthContext";
+import { signOut } from "firebase/auth";
+import { auth } from "../../config/Firebase";
 // Se utilizó ion-icons https://ionic.io/ionicons
 
 const Sidebar = () => {
   const { darkModeState, setDarkModeState } = useContext(DarkLightMode);
   // Estado para alterar el estilo de la sibedar. Classname condicional
   const { sidebarState, setSidebarState } = useContext(SidebarUnfolded);
+  // Para mantener estado del navbar cuando no esta desplegado
   const [miniSidebarState, setMiniSidebarState] = useState(false);
-  const [sessionAuth, setSessionAuth] = useState(false);
 
-  const menuConditional = (sidebarState, miniSidebarState) => {
-    if (!sidebarState && !miniSidebarState) {
-      return "sidebar";
-    } else if (sidebarState && miniSidebarState) {
-      return "sidebar mini-sidebar max-barra-lateral";
-    } else if (sidebarState && !miniSidebarState) {
-      return "sidebar mini-sidebar";
-    } else {
-      return "sidebar max-barra-lateral";
+  const navigate = useNavigate();
+
+  const { currentUser } = useAuth();
+
+  const menuElements = menuList(currentUser);
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      localStorage.removeItem("currentUser");
+      navigate("/");
+    } catch (error) {
+      console.error(error);
     }
   };
 
-  const menuElements = menuList(sessionAuth);
-
   return (
-    <div className={menuConditional(sidebarState, miniSidebarState)}>
+    <div className={menuCond(sidebarState, miniSidebarState)}>
       <div
         className="menu"
         onClick={() => {
@@ -49,30 +56,30 @@ const Sidebar = () => {
             setSidebarState(!sidebarState);
           }}
         >
-          <ion-icon name="film-outline" />
-          <span className={!sidebarState ? "" : "dissapear"}>PRIME MOVIES</span>
+          <ion-icon name="globe-outline"></ion-icon>
+          <span className={!sidebarState ? "" : "dissapear"}>PRIME FORUM</span>
         </div>
-        <button className="button-sidebar">
-          <ion-icon name="add-outline"></ion-icon>
-          <span className={!sidebarState ? "" : "dissapear"}>
-            Nueva publicación
-          </span>
-        </button>
+        <Link to="/create-post">
+          <button className="button-sidebar">
+            <ion-icon name="add-outline"></ion-icon>
+            <span className={!sidebarState ? "" : "dissapear"}>
+              Nueva publicación
+            </span>
+          </button>
+        </Link>
       </div>
-      {/* Solo aparecerá al inicar sesión o no... */}
-
       <nav className="Navbar">
         <ul>
-          {menuElements.map(({ id, iconName, menuElementName }) => {
+          {menuElements.map(({ id, iconName, menuElementName, link }) => {
             return (
               <li key={id}>
-                <a>
+                <Link to={link}>
                   <i></i>
                   <ion-icon name={iconName}></ion-icon>
                   <span className={!sidebarState ? "" : "dissapear"}>
                     {menuElementName}
                   </span>
-                </a>
+                </Link>
               </li>
             );
           })}
@@ -101,43 +108,40 @@ const Sidebar = () => {
           </div>
         </div>
         <div className="usuario">
-          {sessionAuth ? (
+          {currentUser ? (
             <>
-              <img src="src/assets/img/news-800x500-3.jpg" alt="" />
+              <img src="src\assets\img\Default_pfp.svg.png" alt="" />
               <div className="info-usuario">
                 <div className="nombre-email">
-                  <span className="nombre">Renzo Arturo</span>
+                  <span className="nombre">{currentUser.displayName}</span>
                   <span className="config">Configurar cuenta</span>
                 </div>
 
                 <ion-icon
                   name="log-out-outline"
-                  onClick={() => {
-                    setSessionAuth(false);
-                  }}
+                  onClick={handleLogout}
                 ></ion-icon>
               </div>
             </>
           ) : (
             <>
               <div className="login-register">
-                <div
-                  className="login"
-                  onClick={() => {
-                    setSessionAuth(true);
-                  }}
-                >
-                  <ion-icon name="log-in-outline"></ion-icon>
-                  <span className={!sidebarState ? "" : "dissapear"}>
-                    Iniciar Sesión
-                  </span>
-                </div>
-                <div className="register">
-                  <ion-icon name="person-add-outline"></ion-icon>
-                  <span className={!sidebarState ? "" : "dissapear"}>
-                    Registrarse
-                  </span>
-                </div>
+                <Link to="/login">
+                  <div className="login">
+                    <ion-icon name="log-in-outline"></ion-icon>
+                    <span className={!sidebarState ? "" : "dissapear"}>
+                      Iniciar Sesión
+                    </span>
+                  </div>
+                </Link>
+                <Link to="/register">
+                  <div className="register">
+                    <ion-icon name="person-add-outline"></ion-icon>
+                    <span className={!sidebarState ? "" : "dissapear"}>
+                      Registrarse
+                    </span>
+                  </div>
+                </Link>
               </div>
             </>
           )}

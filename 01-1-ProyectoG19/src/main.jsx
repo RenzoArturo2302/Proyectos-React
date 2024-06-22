@@ -5,12 +5,15 @@ import App from "./App.jsx";
 import "./styles.css";
 import { DarkLightModeContext } from "./contexts/DarkLightModeContext.jsx";
 import { SidebarUnfoldedContext } from "./contexts/SidebarUnfoldedContext.jsx";
+import { AuthProvider } from "./contexts/AuthContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <DarkLightModeContext>
       <SidebarUnfoldedContext>
-        <App />
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </SidebarUnfoldedContext>
     </DarkLightModeContext>
   </React.StrictMode>

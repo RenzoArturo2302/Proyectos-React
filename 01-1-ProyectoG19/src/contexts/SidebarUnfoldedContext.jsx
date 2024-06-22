@@ -5,16 +5,12 @@ import { getStorage, saveStorage } from "../utils/localStorage";
 const SidebarUnfolded = createContext();
 
 const SidebarUnfoldedContext = (props) => {
-  const [sidebarState, setSidebarState] = useState(false);
+  const [sidebarState, setSidebarState] = useState(() => {
+    const storage = getStorage("sidebar");
+    return storage ? storage : false;
+  });
 
   const valor = { sidebarState, setSidebarState };
-
-  useEffect(() => {
-    const storage = getStorage("sidebar");
-    if (storage) {
-      setSidebarState(storage);
-    }
-  }, []);
 
   useEffect(() => {
     saveStorage("sidebar", sidebarState);

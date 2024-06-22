@@ -37,12 +37,6 @@
   transition: width 0.5s ease, background-color 0.3s ease;
 }
 
-.sidebar > div:nth-child(1),
-.sidebar > nav:nth-child(2),
-.sidebar > div:nth-child(3) {
-  /* border: 2px solid red; */
-}
-
 .mini-sidebar {
   width: 80px;
 }
@@ -315,6 +309,14 @@
   color: var(--font-menu);
   overflow: hidden;
   white-space: nowrap;
+}
+
+.sidebar a {
+  text-decoration: none;
+}
+/* Después de seleccionar elemento */
+.sidebar a:any-link {
+  color: var(--font);
 }
 
 .sidebar .login-register span {

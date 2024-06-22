@@ -9,8 +9,8 @@ const saveStorage = (name, data) => {
   localStorage.setItem(name, dataString);
 };
 
-const remoteStorage = (name) => {
+const removeStorage = (name) => {
   localStorage.removeItem(name);
 };
 
-export { getStorage, saveStorage, remoteStorage };
+export { getStorage, saveStorage, removeStorage };

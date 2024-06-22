@@ -1,14 +1,13 @@
 import React, { useContext } from "react";
-import "../../src/styles.css";
 import { SidebarUnfolded } from "../contexts/SidebarUnfoldedContext";
-import Saludo from "../components/Homeview/Saludo";
-const HomeView = () => {
+import TestNotification from "../components/Prueba/TestNotification";
+const CategoriesView = () => {
   const { sidebarState } = useContext(SidebarUnfolded);
   return (
     <div className={sidebarState ? "page min-page" : "page"}>
-      <Saludo />
+      <TestNotification />
     </div>
   );
 };
 
-export default HomeView;
+export default CategoriesView;

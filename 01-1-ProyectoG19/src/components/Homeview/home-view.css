@@ -1,0 +1,23 @@
+.home-view {
+  border: 1px solid red;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-view h1 {
+  font-size: 3.5rem;
+}
+
+.home-view .image-carrusel {
+  width: 600px;
+  height: 500px;
+  border: 2px green solid;
+}
+
+.home-view .image-carrusel img {
+  width: 100%;
+  height: 100%;
+}
