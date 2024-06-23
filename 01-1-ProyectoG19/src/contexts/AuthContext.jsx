@@ -26,7 +26,6 @@ export const AuthProvider = (props) => {
         const { displayName, email, uid } = user;
 
         saveStorage("currentUser", JSON.stringify({ displayName, email, uid }));
-        console.log(user);
       } else {
         removeStorage("currentUser");
       }

@@ -1,9 +1,6 @@
 import React from "react";
-import { getDataPost } from "../../utils/dataPost";
 
-const data = getDataPost();
-
-const PostCard = () => {
+const PostCard = ({ data }) => {
   return (
     <div className="main-post-view">
       {data.map((obj) => {
