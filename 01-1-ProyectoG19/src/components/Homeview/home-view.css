@@ -109,6 +109,14 @@
   word-wrap: break-word;
 }
 
+/* Crete-Edit Post Form */
+
+.home-view .form-view {
+  border: 2px green solid;
+  width: 100%;
+  min-height: 1000px;
+}
+
 @media (max-width: 1400px) {
   .home-view .main-post-view {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -143,7 +151,7 @@
 
 @media (max-width: 630px) {
   .home-view .saludo-hv h1 {
-    font-size: 4vh;
+    font-size: 3rem;
   }
 }
 
@@ -153,7 +161,7 @@
   }
 
   .card {
-    height: 200px;
+    height: 300px;
   }
 
   .card .metadatos .category-date {
