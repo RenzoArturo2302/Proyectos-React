@@ -7,6 +7,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 
 const LoginView = () => {
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -35,8 +37,9 @@ const LoginView = () => {
         values.password
       );
       const user = userCredential.user;
-      console.log(user);
+      toast.success("Inicio de sesión exitoso!");
       localStorage.setItem("currentUser", JSON.stringify(user));
+      await delay(1000);
       navigate("/");
     } catch (error) {
       if (error.code === "auth/invalid-credential") {

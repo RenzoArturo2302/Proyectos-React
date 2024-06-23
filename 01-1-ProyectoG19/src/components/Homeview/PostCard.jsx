@@ -1,0 +1,30 @@
+import React from "react";
+import { getDataPost } from "../../utils/dataPost";
+
+const data = getDataPost();
+
+const PostCard = () => {
+  return (
+    <div className="main-post-view">
+      {data.map((obj) => {
+        return (
+          <div className="card" key={obj.id}>
+            <img src={obj.src} alt="" />
+            <div className="fondo"></div>
+            <div className="metadatos">
+              <div className="category-date">
+                <h2 className="category limitar-caracter-categoria">
+                  {obj.category}
+                </h2>
+                <h3 className="date">{obj.date}</h3>
+              </div>
+              <h1 className="titulo limitar-caracter">{obj.tittle}</h1>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+export default PostCard;

@@ -13,6 +13,7 @@ import CreatePostView from "./views/CreatePostView";
 import CategoriesView from "./views/CategoriesView";
 import AboutUsView from "./views/AboutUsView";
 import HelpView from "./views/HelpView";
+import MyPosts from "./views/MyPosts";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: "/help",
         element: <HelpView />,
+      },
+      {
+        path: "/myPosts",
+        element: <MyPosts />,
       },
     ],
   },

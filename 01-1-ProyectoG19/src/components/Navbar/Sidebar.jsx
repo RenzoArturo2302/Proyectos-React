@@ -59,14 +59,18 @@ const Sidebar = () => {
           <ion-icon name="globe-outline"></ion-icon>
           <span className={!sidebarState ? "" : "dissapear"}>PRIME FORUM</span>
         </div>
-        <Link to="/create-post">
-          <button className="button-sidebar">
-            <ion-icon name="add-outline"></ion-icon>
-            <span className={!sidebarState ? "" : "dissapear"}>
-              Nueva publicación
-            </span>
-          </button>
-        </Link>
+        {currentUser ? (
+          <Link to="/create-post">
+            <button className="button-sidebar">
+              <ion-icon name="add-outline"></ion-icon>
+              <span className={!sidebarState ? "" : "dissapear"}>
+                Nueva publicación
+              </span>
+            </button>
+          </Link>
+        ) : (
+          ""
+        )}
       </div>
       <nav className="Navbar">
         <ul>

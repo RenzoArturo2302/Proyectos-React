@@ -12,6 +12,7 @@ import { auth } from "../config/Firebase";
 // Para las alertas (Prueba)
 
 const RegisterView = () => {
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   const [values, setValues] = useState({
     username: "",
     email: "",
@@ -45,11 +46,14 @@ const RegisterView = () => {
       );
       const user = userCredential.user;
       await updateProfile(user, { displayName: values.username });
+
       localStorage.setItem(
         "currentUser",
         JSON.stringify({ ...user, displayName: values.username })
       );
-      navigate("/"); // Navega a la página de inicio o a otra ruta deseada
+      toast.success("Usuario registrado exitosamente!");
+      await delay(1000);
+      navigate("/"); // Navega a la página de inicio
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         toast.error("El correo electrónico ya está en uso.");
