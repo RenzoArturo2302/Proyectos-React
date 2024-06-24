@@ -67,6 +67,8 @@
   width: 90%;
   bottom: 10%;
   left: 5%;
+  word-wrap: break-word;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -74,13 +76,12 @@
 }
 
 .card .metadatos .titulo {
-  left: 5%;
-
   display: block;
-  width: 100%;
-  left: 5%;
   font-size: 1.5rem;
   z-index: 10;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .card .metadatos .category-date {
@@ -100,21 +101,197 @@
 }
 
 .card .metadatos .category-date .category {
+  display: inline-block;
   overflow: hidden;
   font-weight: 600;
   /* border: 1px blue solid; */
-  padding: 0 0.25rem;
+  padding: 0.1rem 0.25rem;
   background-color: var(--buttons-color);
   /* color: var(--deepblue); */
   word-wrap: break-word;
+  cursor: pointer;
+}
+
+.card .metadatos .category-date .category:hover {
+  background-color: var(--buttons-color-hover);
 }
 
 /* Crete-Edit Post Form */
 
 .home-view .form-view {
-  border: 2px green solid;
+  /* border: 2px green solid; */
   width: 100%;
   min-height: 1000px;
+}
+
+.home-view .form-view * {
+  font-size: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0;
+}
+
+.home-view .form-view label {
+  color: var(--buttons-font-color);
+  font-weight: 500;
+}
+
+.home-view .form-view input[type="text"],
+.home-view .form-view select,
+.home-view .form-view textarea,
+.home-view .form-view option {
+  padding: 0 10px;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+.home-view .form-view select {
+  width: 350px;
+}
+
+.home-view .form-view textarea {
+  display: block;
+  width: 100%;
+  resize: none;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.home-view .form-view input[type="file"] {
+  display: none;
+}
+
+.home-view .form-view .center {
+  display: flex;
+  align-items: center;
+  /* border: 2px red solid; */
+  width: 100;
+}
+
+.home-view .form-view select,
+.home-view .form-view button {
+  cursor: pointer;
+}
+
+.home-view .form-view button {
+  background-color: var(--buttons-color);
+  width: 300px;
+  /* border: 1px var(--buttons-font-color) solid; */
+  border: none;
+  color: var(--buttons-font-color);
+  border-radius: 5px;
+  padding: 4px 0;
+}
+
+.home-view .form-view button:hover,
+.user-post .container .contenido button:hover {
+  background-color: var(--buttons-color-hover);
+}
+
+/* User post view */
+
+.user-post {
+  width: 80%;
+  /* border: 2px red solid; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-post .container {
+  display: flex;
+  width: 1200px;
+  margin: 20px 0;
+  height: 250px;
+  background-color: var(--fondo-post);
+  color: var(--font);
+
+  position: relative; /* color: var(--buttons-font-color); */
+}
+
+.user-post .container img {
+  width: 400px;
+  height: 250px;
+}
+
+.user-post .container .contenido {
+  /* border: 2px blue solid; */
+  height: 250px;
+  padding: 10px;
+}
+
+.user-post .container .fondo {
+  background-size: cover;
+  position: absolute;
+  z-index: 5;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #27232f);
+  width: 400px;
+  height: 250px;
+  bottom: 0;
+  left: 0;
+  transition: none;
+}
+
+.user-post .container .contenido .title {
+  display: inline-block;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.user-post .container .contenido .category {
+  display: inline-block;
+  /* border: 2px green solid; */
+  background-color: var(--buttons-color);
+  color: var(--buttons-font-color);
+  padding: 0.1rem 0.25rem;
+}
+
+.user-post .container .contenido h1 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.user-post .container .contenido h2 {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+
+.user-post .container .contenido h3 {
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.user-post .container .contenido .edit-eliminate {
+  /* border: 1px solid red; */
+  display: flex;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.user-post .container .contenido button {
+  cursor: pointer;
+  border: none;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  margin-left: 10px;
+  background-color: var(--buttons-color);
+}
+
+.user-post .container .contenido ion-icon {
+  font-size: 2rem;
+  height: 25px;
+  width: 25px;
+  color: var(--buttons-font-color);
+}
+
+@media (max-width: 1600px) {
+  .user-post .container {
+    width: 1000px;
+  }
 }
 
 @media (max-width: 1400px) {
@@ -138,24 +315,104 @@
   .card .metadatos .titulo {
     font-size: 1.25rem;
   }
+
+  .user-post .container {
+    flex-direction: column;
+    height: 600px;
+    width: 600px;
+  }
+
+  .user-post .container .fondo {
+    height: 350px;
+    width: 600px;
+    top: 0;
+    left: 0;
+  }
+
+  .user-post .container img {
+    width: 100%;
+    height: 350px;
+  }
+
+  .user-post .container .contenido {
+    height: 250px;
+  }
 }
 
 @media (max-width: 1100px) {
   /* .home-view .main-post-view {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   } */
+  .user-post .reep {
+    font-size: 1.25rem;
+    text-align: center;
+  }
   .home-view .saludo-hv h1 {
     font-size: 3rem;
   }
+  .user-post .container {
+    width: 500px;
+  }
+
+  .user-post .container .fondo {
+    width: 500px;
+  }
 }
 
-@media (max-width: 630px) {
+@media (max-width: 750px) {
+  /* .home-view .main-post-view {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  } */
+
+  .user-post .container {
+    height: 500px;
+    width: 370px;
+  }
+
+  .user-post .container .fondo {
+    width: 370px;
+    height: 290px;
+  }
+
+  .user-post .container img {
+    width: 100%;
+    height: 350px;
+  }
+
+  .user-post .container .contenido h1 {
+    font-size: 1.25rem;
+  }
+
+  .user-post .container .contenido h2 {
+    font-size: 1rem;
+  }
+
+  .user-post .container .contenido h3 {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 650px) {
+  .home-view .form-view * {
+    font-size: 1.35rem;
+  }
   .home-view .saludo-hv h1 {
     font-size: 3rem;
+  }
+
+  .home-view .form-view button,
+  .home-view .form-view select {
+    width: 255px;
   }
 }
 
 @media (max-width: 450px) {
+  .home-view .form-view * {
+    font-size: 1.25rem;
+  }
+  .home-view .saludo-hv h1 {
+    font-size: 2rem;
+  }
   .home-view .main-post-view {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
@@ -171,5 +428,35 @@
 
   .card .metadatos .titulo {
     font-size: 1rem;
+  }
+  .home-view .form-view input[type="text"],
+  .home-view .form-view button,
+  .home-view .form-view select,
+  .home-view .form-view textarea {
+    width: 75vw;
+  }
+}
+
+@media (max-width: 360px) {
+  .home-view .main-post-view {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .card {
+    height: 200px;
+  }
+
+  .card .metadatos .category-date {
+    font-size: 0.5rem;
+    /* bottom: ; */
+  }
+
+  .card .metadatos .titulo {
+    font-size: 1rem;
+  }
+
+  .user-post .container {
+    width: 300px;
+    height: 400px;
   }
 }

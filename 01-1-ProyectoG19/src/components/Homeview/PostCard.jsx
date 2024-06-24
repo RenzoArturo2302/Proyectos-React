@@ -10,12 +10,10 @@ const PostCard = ({ data }) => {
             <div className="fondo"></div>
             <div className="metadatos">
               <div className="category-date">
-                <h2 className="category limitar-caracter-categoria">
-                  {obj.category}
-                </h2>
+                <h2 className="category">{obj.category}</h2>
                 <h3 className="date">{obj.date}</h3>
               </div>
-              <h1 className="titulo limitar-caracter">{obj.tittle}</h1>
+              <h1 className="titulo">{obj.tittle}</h1>
             </div>
           </div>
         );

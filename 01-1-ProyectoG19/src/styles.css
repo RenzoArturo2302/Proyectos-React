@@ -9,12 +9,13 @@
   padding: 0;
   font-family: "Outfit", sans-serif;
   /* border: 1px solid red; */
+  transition: background-color 0.5s ease;
 }
 
 /* Variables  */
 :root {
   --fondo: #dadada;
-  --sidebar: #393e46;
+  --sidebar: #212121;
   --buttons-color: #0f9ca4;
   --buttons-color-hover: #02b6c0;
   --buttons-font-color: #222831;
@@ -26,6 +27,7 @@
   --menu-navigation-bar: #505864;
   --menu-navigation-bar-hover: #656e7e;
   --pages-font: #393e46;
+  --fondo-post: #212121;
 }
 
 /* Elemento que encierra todo, se encuentra en el body */
@@ -44,19 +46,20 @@ main {
 }
 
 [data-theme="darkmode"] {
-  --fondo: #27232f;
-  --sidebar: #e00f4e;
+  --fondo: #212121;
+  --sidebar: #000000;
   --buttons-color: #4410aa;
   --buttons-color-hover: #560aef;
   --buttons-font-color: #dde5f0;
   --font: #dadada;
   --font-menu: #dadada;
-  --font-linea: #963753;
+  --font-linea: #dadada;
   --switch-base: #2c2a2f;
   --switch-circulo: #dadada;
   --menu-navigation-bar: #e64e7c;
   --menu-navigation-bar-hover: #e27697;
-  --pages-font: #dadada;
+  --pages-font: #ececec;
+  --fondo-post: #2f2f2f;
 }
 
 .page {
