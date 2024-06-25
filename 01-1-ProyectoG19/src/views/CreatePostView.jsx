@@ -16,15 +16,30 @@ const CreatePostView = () => {
   const { sidebarState } = useContext(SidebarUnfolded);
 
   const [dataPost, setDataPost] = useState({
-    email: "",
-    password: "",
+    src: "https://loremflickr.com/640/480/fashion",
+    title: "",
+    category: "",
+    date: new Date(),
+    content: "",
   });
+
+  const handleData = (ev) => {
+    console.log(ev.target.name);
+    const nombrePropiedad = ev.target.name;
+    const valorPropiedad = ev.target.value;
+    const data = {
+      ...dataPost,
+      [nombrePropiedad]: valorPropiedad,
+    };
+
+    setDataPost(data);
+  };
 
   return (
     <div className={sidebarState ? "page min-page" : "page"}>
       <div className="home-view">
         <Saludo currentUser={currentUser} msg={"Create a new post!"} />
-        <CreatePostForm dataPost={dataPost} />
+        <CreatePostForm dataPost={dataPost} handleData={handleData} />
       </div>
     </div>
   );
