@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { getCategories } from "../../utils/categories";
+//
+import MyEditor from "../../components/Homeview/MyEditor";
 
 const CreatePostForm = ({
   dataPost,
@@ -8,9 +10,10 @@ const CreatePostForm = ({
   handleImage,
   handleSubmit,
   buttonState,
+  setDataPost,
 }) => {
-  const [text, setText] = useState("");
-  const textareaRef = useRef(null);
+  // const [text, setText] = useState("");
+  // const textareaRef = useRef(null);
   const categories = getCategories();
   const fileInputRef = useRef(null);
 
@@ -19,16 +22,16 @@ const CreatePostForm = ({
   };
 
   // Para cambiar la altura del textarea
-  useEffect(() => {
-    const adjustHeight = (element) => {
-      element.style.height = "auto";
-      element.style.height = element.scrollHeight + "px";
-    };
+  // useEffect(() => {
+  //   const adjustHeight = (element) => {
+  //     element.style.height = "auto";
+  //     element.style.height = element.scrollHeight + "px";
+  //   };
 
-    if (textareaRef.current) {
-      adjustHeight(textareaRef.current);
-    }
-  }, [text]);
+  //   if (textareaRef.current) {
+  //     adjustHeight(textareaRef.current);
+  //   }
+  // }, [text]);
 
   return (
     <div className="form-view">
@@ -85,23 +88,15 @@ const CreatePostForm = ({
             </div>
           )}
         </div>
-        <div>
-          <label htmlFor="content">
-            Ingrese el contenido de la publicación
-          </label>
-          <textarea
-            ref={textareaRef}
-            name="content"
-            id="content"
-            value={dataPost.content}
-            onChange={(e) => {
-              setText(e.target.value);
-              handleData(e);
-            }}
-            rows="10"
-            placeholder="Escribe algo..."
-            className="auto-expand"
-          ></textarea>
+
+        <div className="form-editor-label">
+          <label>Ingrese el contenido de la publicación</label>
+        </div>
+        <div className="form-my-editor">
+          <MyEditor
+            initialContent={dataPost.content}
+            setContent={(content) => setDataPost({ ...dataPost, content })}
+          />
         </div>
         <div className="center">
           <button type="submit" disabled={buttonState}>

@@ -1,10 +1,14 @@
-import React from "react";
 import { database } from "../config/Firebase";
-import { ref, set } from "firebase/database";
+import { push, ref, set } from "firebase/database";
 
-const crearDocumento = async (data, currentUser) => {
+const crearDocumento = async (data, currentUserID) => {
   try {
-    const documentRef = "";
+    const documentRef = ref(database, `usuarios/${currentUserID}/documentos`);
+    const newDocument = push(documentRef);
+
+    await set(newDocument, data);
+
+    return newDocument.key;
   } catch (error) {
     console.log(error);
   }

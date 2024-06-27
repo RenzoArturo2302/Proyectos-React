@@ -343,7 +343,6 @@
   background-color: var(--buttons-color-hover);
 }
 
-/* Responsive */
 @media (max-height: 660px) {
   .sidebar .logo {
     margin-bottom: 5px;

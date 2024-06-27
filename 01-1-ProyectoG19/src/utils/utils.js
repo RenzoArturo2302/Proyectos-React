@@ -1,4 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const nameFileUUID = (image) => {
   const header = image.split(";")[0]; // "data:image/jpeg"
@@ -23,4 +25,14 @@ const convertDateToLocal = (fechaYHora, zonaHoraria = "es-ES") => {
   //'viernes, 31 de mayo de 2024'
 };
 
-export { convertDateToLocal, nameFileUUID };
+// Para que no se cierre inmediatamente al crear o editar un post.
+const mensajeToastConPromesa = (message, options) => {
+  return new Promise((resolve) => {
+    toast(message, {
+      ...options,
+      onClose: resolve,
+    });
+  });
+};
+
+export { convertDateToLocal, nameFileUUID, mensajeToastConPromesa };

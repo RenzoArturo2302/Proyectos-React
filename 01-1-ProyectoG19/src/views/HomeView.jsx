@@ -11,6 +11,7 @@ import { useAuth } from "../contexts/AuthContext";
 
 //
 import { getDataPost } from "../utils/dataPost";
+
 const HomeView = () => {
   const data = getDataPost();
   const { currentUser } = useAuth(auth);

@@ -20,9 +20,10 @@ button:disabled {
 
 .home-view .saludo-hv {
   /* border: 1px solid green; */
-  display: flex;
-  height: 200px;
+  display: block;
+  min-height: 100px;
   width: 100%;
+  margin-top: 50px;
 }
 
 .home-view .saludo-hv h1 {
@@ -42,7 +43,7 @@ button:disabled {
   width: 100%;
   display: grid;
   margin: 40px 0;
-  grid-template-columns: repeat(4, minmax(400px, 1fr));
+  grid-template-columns: repeat(4, minmax(300px, 1fr));
   gap: 20px;
 }
 
@@ -130,68 +131,63 @@ button:disabled {
 
 .home-view .form-view {
   /* border: 2px green solid; */
-  width: 100%;
-  min-height: 1000px;
+  min-width: 80%;
+  min-height: 1100px;
+  margin-top: 20px;
 }
 
-.home-view .form-view * {
-  font-size: 1.4rem;
+.form-title *,
+.form-image *,
+.form-category *,
+.form-editor-label label,
+.center * {
+  width: 100%;
+  font-size: 1.3rem;
   display: flex;
   flex-direction: column;
-  margin: 5px 0;
+  margin: 10px 0;
+}
+
+.form-title input[type="text"],
+.form-category select {
+  padding: 0 10px;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+.form-image input[type="file"] {
+  display: none;
 }
 
 .home-view .form-view label {
   color: var(--buttons-font-color);
   font-weight: 500;
 }
-
 .home-view .form-view p {
   font-weight: 300;
-  font-size: 1.2rem;
-}
-
-.home-view .form-view input[type="text"],
-.home-view .form-view select,
-.home-view .form-view textarea,
-.home-view .form-view option {
-  padding: 0 10px;
-  line-height: 1.5;
-  font-weight: 300;
+  font-size: 1.1rem;
 }
 
 .home-view .form-view select {
   width: 350px;
 }
 
-.home-view .form-view textarea {
-  display: block;
-  width: 100%;
-  resize: none;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
-.home-view .form-view input[type="file"] {
-  display: none;
-}
-
-.home-view .form-view .center {
+.center {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  /* border: 2px red solid; */
-  width: 100;
+  margin-top: 10px;
 }
-
 .home-view .form-view select,
 .home-view .form-view button:enabled {
   cursor: pointer;
 }
 
-.home-view .form-view button {
+.center button,
+.form-image button {
   background-color: var(--buttons-color);
   width: 300px;
-  /* border: 1px var(--buttons-font-color) solid; */
+
   border: none;
   color: var(--buttons-font-color);
   border-radius: 5px;
@@ -410,13 +406,15 @@ button:disabled {
   .home-view .form-view * {
     font-size: 1.35rem;
   }
-  .home-view .saludo-hv h1 {
-    font-size: 3rem;
-  }
 
-  .home-view .form-view button,
-  .home-view .form-view select {
-    width: 255px;
+  .home-view .saludo-hv h1 {
+    font-size: 2.25rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-view .saludo-hv {
+    margin-top: 80px;
   }
 }
 
@@ -442,11 +440,19 @@ button:disabled {
   .card .metadatos .titulo {
     font-size: 1rem;
   }
+
+  .prueba {
+    display: flex;
+    align-items: center;
+  }
+
   .home-view .form-view input[type="text"],
-  .home-view .form-view button,
-  .home-view .form-view select,
-  .home-view .form-view textarea {
-    width: 75vw;
+  .home-view .form-view select {
+    width: 90vw;
+  }
+
+  .home-view .form-view button {
+    max-width: 250px;
   }
 }
 
@@ -470,5 +476,13 @@ button:disabled {
   .user-post .container {
     width: 300px;
     height: 400px;
+  }
+
+  .user-post .container .fondo {
+    width: 300px;
+    height: 230px;
+  }
+
+  .home-view .form-view button {
   }
 }
