@@ -10,7 +10,7 @@ const CreatePostForm = ({
   handleImage,
   handleSubmit,
   buttonState,
-  setDataPost,
+  handleContent,
 }) => {
   // const [text, setText] = useState("");
   // const textareaRef = useRef(null);
@@ -93,10 +93,7 @@ const CreatePostForm = ({
           <label>Ingrese el contenido de la publicación</label>
         </div>
         <div className="form-my-editor">
-          <MyEditor
-            initialContent={dataPost.content}
-            setContent={(content) => setDataPost({ ...dataPost, content })}
-          />
+          <MyEditor value={dataPost.content} handleContent={handleContent} />
         </div>
         <div className="center">
           <button type="submit" disabled={buttonState}>

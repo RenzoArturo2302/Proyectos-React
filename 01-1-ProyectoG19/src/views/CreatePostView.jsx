@@ -28,12 +28,22 @@ const CreatePostView = () => {
     title: "",
     src: "",
     category: "",
-    date: null,
+    date: "",
     content: "",
   });
 
   const navigate = useNavigate();
   const [image, setImage] = useState(dataPost.src);
+
+  const handleContent = (content) => {
+    const data = {
+      ...dataPost,
+      ["content"]: content,
+    };
+
+    setDataPost(data);
+  };
+
   const handleData = (ev) => {
     const nombrePropiedad = ev.target.name;
     const valorPropiedad = ev.target.value;
@@ -88,41 +98,48 @@ const CreatePostView = () => {
       return;
     }
 
-    toast.info("Creando post", {
-      autoClose: false,
-      closeButton: false,
-      hideProgressBar: true,
-      toastId: "loading-toast",
-    });
-    setButtonState(true);
-    const imageURL = await storageServiceImg(image, "imagePost");
+    try {
+      toast.info("Creando post", {
+        autoClose: false,
+        closeButton: false,
+        hideProgressBar: true,
+        toastId: "loading-toast",
+      });
+      setButtonState(true);
+      const imageURL = await storageServiceImg(image, "imagePost");
 
-    if (imageURL === "") {
+      if (imageURL === "") {
+        toast.dismiss("loading-toast");
+        setButtonState(false);
+        toast.error("Ha sucedido un error a la hora de subir la imagen");
+        return;
+      }
+
+      let newPost = {
+        ...dataPost,
+        src: imageURL,
+        date: new Date().toISOString(),
+      };
+
+      await crearDocumento(newPost, currentUser.uid);
+
       toast.dismiss("loading-toast");
+
+      await mensajeToastConPromesa("Post creado exitosamente", {
+        autoClose: 500,
+        type: "success",
+      });
       setButtonState(false);
-      toast.error("Ha sucedido un error a la hora de subir la imagen");
+      navigate("/myPosts");
+    } catch (error) {
+      toast.dismiss("loading-toast");
+      await mensajeToastConPromesa("Error al crear el post", {
+        autoClose: 500,
+        type: "error",
+      });
+      setButtonState(false);
       return;
     }
-
-    let newPost = {
-      ...dataPost,
-    };
-
-    newPost.src = imageURL;
-    newPost.date = new Date();
-
-    console.log(newPost);
-
-    crearDocumento(newPost, currentUser.uid);
-    toast.dismiss("loading-toast");
-
-    await mensajeToastConPromesa("Post creado exitosamente", {
-      autoClose: 500,
-      type: "success",
-    });
-
-    setButtonState(false);
-    navigate("/myPosts");
   };
 
   return (
@@ -136,7 +153,7 @@ const CreatePostView = () => {
           handleImage={handleImage}
           handleSubmit={handleSubmit}
           buttonState={buttonState}
-          setDataPost={setDataPost}
+          handleContent={handleContent}
         />
       </div>
       <ToastContainer />

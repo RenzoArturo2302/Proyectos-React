@@ -10,7 +10,20 @@ const crearDocumento = async (data, currentUserID) => {
 
     return newDocument.key;
   } catch (error) {
-    console.log(error);
+    throw error;
+  }
+};
+
+const obtenerDocumentoPorUser = async (currentUserID) => {
+  try {
+    const userDocumentRef = ref(
+      database,
+      `usuarios/${currentUserID}/documentos`
+    );
+    const resultado = await userDocumentRef.once("value");
+    return resultado.val() || {};
+  } catch (error) {
+    throw error;
   }
 };
 
