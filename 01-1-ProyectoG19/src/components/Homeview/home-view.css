@@ -1,3 +1,13 @@
+.Toastify .Toastify__toast-container {
+  font-size: 1.4rem;
+  width: 500px;
+}
+
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
 .home-view {
   /* position: relative; */
   /* border: 1px solid red */
@@ -136,6 +146,11 @@
   font-weight: 500;
 }
 
+.home-view .form-view p {
+  font-weight: 300;
+  font-size: 1.2rem;
+}
+
 .home-view .form-view input[type="text"],
 .home-view .form-view select,
 .home-view .form-view textarea,
@@ -169,7 +184,7 @@
 }
 
 .home-view .form-view select,
-.home-view .form-view button {
+.home-view .form-view button:enabled {
   cursor: pointer;
 }
 
@@ -183,8 +198,8 @@
   padding: 4px 0;
 }
 
-.home-view .form-view button:hover,
-.user-post .container .contenido button:hover {
+.home-view .form-view button:hover:enabled,
+.user-post .container .contenido button:hover:enabled {
   background-color: var(--buttons-color-hover);
 }
 
