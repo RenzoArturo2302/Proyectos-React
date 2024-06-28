@@ -13,15 +13,11 @@ const nameFileUUID = (image) => {
 };
 
 const convertDateToLocal = (fechaYHora, zonaHoraria = "es-ES") => {
-  const options = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
+  const options = { day: "2-digit", month: "2-digit", year: "numeric" };
 
   const fecha = new Date(fechaYHora);
-  return fecha.toLocaleDateString(zonaHoraria, options);
+  return fecha.toLocaleDateString(zonaHoraria, options).replace(/\//g, "-");
+  return;
   //'viernes, 31 de mayo de 2024'
 };
 

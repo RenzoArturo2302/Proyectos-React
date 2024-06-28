@@ -1,5 +1,7 @@
 import React from "react";
-import { Audio, ColorRing } from "react-loader-spinner";
+import { convertDateToLocal } from "../../utils/utils";
+import { ColorRing } from "react-loader-spinner";
+
 const PostListUser = ({ postsUser, loading }) => {
   console.log(postsUser);
   return (
@@ -17,7 +19,7 @@ const PostListUser = ({ postsUser, loading }) => {
                   <div className="title-category-date">
                     <div className="category-date">
                       <h2 className="category">{obj.category}</h2>
-                      <h3>{obj.date}</h3>
+                      <h3>{convertDateToLocal(obj.date)}</h3>
                     </div>
                     <h1 className="title">{obj.title}</h1>
                   </div>

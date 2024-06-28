@@ -353,7 +353,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   .sidebar {
     position: fixed;
     left: -250px;

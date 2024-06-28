@@ -10,16 +10,15 @@ import { auth } from "../config/Firebase";
 import { useAuth } from "../contexts/AuthContext";
 
 //
-import { getDataPost } from "../utils/dataPost";
 import { obtenerTodosLosDocumentos } from "../utils/realTimeDatabaseFunctions";
 const HomeView = () => {
-  const data = getDataPost();
   const [dataPost, setDataPost] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const getPosts = async () => {
     const allDocuments = await obtenerTodosLosDocumentos();
-    console.log(allDocuments);
     setDataPost(allDocuments);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -36,7 +35,7 @@ const HomeView = () => {
     <div className={sidebarState ? "page min-page" : "page"}>
       <div className="home-view">
         <Saludo currentUser={currentUser} msg={"Welcome to PRIME FORUM!"} />
-        <PostCard dataPost={dataPost} />
+        <PostCard dataPost={dataPost} loading={loading} />
       </div>
     </div>
   );

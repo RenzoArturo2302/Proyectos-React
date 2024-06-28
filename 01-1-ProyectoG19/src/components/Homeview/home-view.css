@@ -12,6 +12,10 @@ button:disabled {
   margin-top: 50px;
 }
 
+.loader-up {
+  margin-top: 0px;
+}
+
 .home-view {
   /* position: relative; */
   /* border: 1px solid red */
@@ -23,7 +27,6 @@ button:disabled {
 }
 
 .home-view .saludo-hv {
-  /* border: 1px solid green; */
   display: block;
   min-height: 100px;
   width: 100%;
@@ -275,7 +278,8 @@ button:disabled {
   /* border: 2px green solid; */
   background-color: var(--buttons-color);
   color: var(--buttons-font-color);
-  padding: 0.1rem 0.25rem;
+  padding: 0.1rem 0.55rem;
+  border-radius: 5px;
 }
 
 .user-post .container .contenido h1 {
