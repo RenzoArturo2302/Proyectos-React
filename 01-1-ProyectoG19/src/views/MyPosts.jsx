@@ -10,7 +10,10 @@ import PostListUser from "../components/Homeview/PostListUser";
 import { auth } from "../config/Firebase";
 import { useAuth } from "../contexts/AuthContext";
 //
-import { obtenerDocumentoPorUser } from "../utils/realTimeDatabaseFunctions";
+import {
+  obtenerDocumentoPorUser,
+  eliminarDocumentoPorID,
+} from "../utils/realTimeDatabaseFunctions";
 import Swal from "sweetalert2";
 
 const MyPosts = () => {
@@ -38,11 +41,13 @@ const MyPosts = () => {
     });
 
     if (result.isConfirmed) {
+      eliminarDocumentoPorID(currentUser.uid, id);
       await Swal.fire({
         title: "¡Éxito!",
         text: "¡Tu post ha sido editado!",
         icon: "success",
       });
+      getPostUser();
     }
   };
 

@@ -1,5 +1,5 @@
 import { database } from "../config/Firebase";
-import { get, push, ref, set, update } from "firebase/database";
+import { get, push, ref, remove, set, update } from "firebase/database";
 
 const crearDocumento = async (data, currentUserID) => {
   try {
@@ -86,7 +86,9 @@ const obtenerDocumentoPorID = async (currentUserID, documentID) => {
     const data = await get(userDocumentRef);
     const dataPost = data.val() || {};
     return dataPost;
-  } catch (error) {}
+  } catch (error) {
+    throw error;
+  }
 };
 
 const editarDocumentoPorID = async (currentUserID, documentID, newData) => {
@@ -97,7 +99,21 @@ const editarDocumentoPorID = async (currentUserID, documentID, newData) => {
     );
 
     update(userDocumentRef, newData);
-  } catch (error) {}
+  } catch (error) {
+    throw error;
+  }
+};
+
+const eliminarDocumentoPorID = async (currentUserID, documentID) => {
+  try {
+    const userDocumentRef = ref(
+      database,
+      `usuarios/${currentUserID}/documentos/${documentID}`
+    );
+    remove(userDocumentRef);
+  } catch (error) {
+    throw error;
+  }
 };
 
 export {
@@ -106,4 +122,5 @@ export {
   obtenerTodosLosDocumentos,
   obtenerDocumentoPorID,
   editarDocumentoPorID,
+  eliminarDocumentoPorID,
 };
