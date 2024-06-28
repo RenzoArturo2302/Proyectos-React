@@ -14,6 +14,8 @@ import { obtenerTodosLosDocumentos } from "../utils/realTimeDatabaseFunctions";
 const HomeView = () => {
   const [dataPost, setDataPost] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { currentUser } = useAuth(auth);
+  const { sidebarState } = useContext(SidebarUnfolded);
 
   const getPosts = async () => {
     const allDocuments = await obtenerTodosLosDocumentos();
@@ -29,8 +31,6 @@ const HomeView = () => {
     }
   }, []);
 
-  const { currentUser } = useAuth(auth);
-  const { sidebarState } = useContext(SidebarUnfolded);
   return (
     <div className={sidebarState ? "page min-page" : "page"}>
       <div className="home-view">

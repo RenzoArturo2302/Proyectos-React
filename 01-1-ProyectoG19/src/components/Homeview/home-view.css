@@ -304,7 +304,8 @@ button:disabled {
   right: 10px;
 }
 
-.user-post .container .contenido button {
+.user-post .container .contenido button,
+.user-post .container .contenido .btn-edit {
   cursor: pointer;
   border: none;
   display: flex;

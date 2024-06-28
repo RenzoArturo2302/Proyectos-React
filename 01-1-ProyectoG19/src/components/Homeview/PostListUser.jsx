@@ -1,9 +1,9 @@
 import React from "react";
 import { convertDateToLocal } from "../../utils/utils";
 import { ColorRing } from "react-loader-spinner";
+import { Link } from "react-router-dom";
 
-const PostListUser = ({ postsUser, loading }) => {
-  console.log(postsUser);
+const PostListUser = ({ postsUser, loading, handleEliminar }) => {
   return (
     <div className="user-post">
       <h2 className="reep">REVISE, EDITE o ELIMINE sus publicaciones</h2>
@@ -24,10 +24,14 @@ const PostListUser = ({ postsUser, loading }) => {
                     <h1 className="title">{obj.title}</h1>
                   </div>
                   <div className="edit-eliminate">
-                    <button>
+                    <Link to={`/edit-post/${obj.id}`} className="btn-edit">
                       <ion-icon name="create-outline"></ion-icon>
-                    </button>
-                    <button>
+                    </Link>
+                    <button
+                      onClick={() => {
+                        handleEliminar(obj.id);
+                      }}
+                    >
                       <ion-icon name="trash-outline"></ion-icon>
                     </button>
                   </div>

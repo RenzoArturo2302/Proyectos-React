@@ -5,26 +5,33 @@ import "../../src/styles.css";
 import Saludo from "../components/Homeview/Saludo";
 import CreatePostForm from "../components/Homeview/CreatePostForm";
 //
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import { useNavigate, useParams } from "react-router-dom";
 //
 import { auth } from "../config/Firebase";
 import { useAuth } from "../contexts/AuthContext";
-
 //
-import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer, toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 //
-import { storageServiceImg } from "../utils/storageService";
+import {
+  storageServiceImg,
+  isFirebaseStorageUrl,
+} from "../utils/storageService";
 //
-import { crearDocumento } from "../utils/realTimeDatabaseFunctions";
+import {
+  obtenerDocumentoPorID,
+  editarDocumentoPorID,
+} from "../utils/realTimeDatabaseFunctions";
 //
 import { mensajeToastConPromesa } from "../utils/utils";
+
 import Swal from "sweetalert2";
 
-const CreatePostView = () => {
+const EditPostView = () => {
+  const { id } = useParams();
   const { currentUser } = useAuth(auth);
   const { sidebarState } = useContext(SidebarUnfolded);
-  const [buttonState, setButtonState] = useState(false);
+  const [buttonState, setButtonState] = useState(true);
   const [dataPost, setDataPost] = useState({
     title: "",
     src: "",
@@ -34,7 +41,8 @@ const CreatePostView = () => {
   });
 
   const navigate = useNavigate();
-  const [image, setImage] = useState(dataPost.src);
+
+  const [image, setImage] = useState("");
 
   const handleContent = (content) => {
     const data = {
@@ -65,6 +73,7 @@ const CreatePostView = () => {
           title: "¡Error!",
           text: "Por favor, selecciona un archivo de imagen.",
         });
+
         return;
       }
       const reader = new FileReader();
@@ -95,13 +104,13 @@ const CreatePostView = () => {
     ev.preventDefault();
     const { title, category, content } = dataPost;
     //validando el formulario
-
     if (title === "" || category === "" || content === "") {
       Swal.fire({
         icon: "error",
         title: "¡Error!",
         text: "Faltan campos por llenar",
       });
+
       return;
     }
     if (image === "") {
@@ -110,13 +119,13 @@ const CreatePostView = () => {
         title: "¡Error!",
         text: "No se ha seleccionado una imagen",
       });
+
       return;
     }
-
     try {
       const result = await Swal.fire({
         title: "¿Estás seguro?",
-        text: "¡Podrás editar el post después!",
+        text: "¡No serás capaz de revertir los cambios!",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
@@ -126,27 +135,42 @@ const CreatePostView = () => {
 
       if (result.isConfirmed) {
         setButtonState(true);
-        const imageURL = await storageServiceImg(image, "imagePost");
+        let imageURL = "";
+        const isAlreadyFirebase = isFirebaseStorageUrl(image);
+        console.log(isAlreadyFirebase);
+        if (isAlreadyFirebase) {
+          imageURL = image;
+        } else {
+          imageURL = await storageServiceImg(image, "imagePost");
+        }
+
         if (imageURL === "") {
+          toast.dismiss("loading-toast");
           setButtonState(false);
           Swal.fire({
             icon: "error",
             title: "¡Error!",
-            text: "Error al subir la imagen",
+            text: "Ha sucedido un error a la hora de subir la imagen",
+            timer: 1200,
+            showConfirmButton: false,
           });
+
           return;
         }
-        let newPost = {
+
+        let newData = {
           ...dataPost,
           src: imageURL,
           date: new Date().toISOString(),
         };
-        await crearDocumento(newPost, currentUser.uid);
+
+        await editarDocumentoPorID(currentUser.uid, id, newData);
         await Swal.fire({
           title: "¡Éxito!",
-          text: "¡Tu post ha sido creado!",
+          text: "¡Tu post ha sido editado!",
           icon: "success",
         });
+
         setButtonState(false);
         navigate("/myPosts");
       }
@@ -156,15 +180,27 @@ const CreatePostView = () => {
         title: "¡Error!",
         text: "Error al crear el post",
       });
-
       return;
     }
   };
 
+  const getData = async () => {
+    try {
+      const data = await obtenerDocumentoPorID(currentUser.uid, id);
+      setDataPost(data);
+      setImage(data.src);
+      setButtonState(false);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <div className={sidebarState ? "page min-page" : "page"}>
       <div className="home-view">
-        <Saludo currentUser={currentUser} msg={"Create a new post!"} />
+        <Saludo currentUser={currentUser} msg={"Edit your post!"} />{" "}
         <CreatePostForm
           dataPost={dataPost}
           handleData={handleData}
@@ -173,7 +209,7 @@ const CreatePostView = () => {
           handleSubmit={handleSubmit}
           buttonState={buttonState}
           handleContent={handleContent}
-          msgButton="Crear publicación"
+          msgButton="Editar publicación"
         />
       </div>
       <ToastContainer />
@@ -181,4 +217,4 @@ const CreatePostView = () => {
   );
 };
 
-export default CreatePostView;
+export default EditPostView;

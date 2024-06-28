@@ -14,6 +14,7 @@ import CategoriesView from "./views/CategoriesView";
 import AboutUsView from "./views/AboutUsView";
 import HelpView from "./views/HelpView";
 import MyPosts from "./views/MyPosts";
+import EditPostView from "./views/EditPostView";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "/myPosts",
         element: <MyPosts />,
+      },
+      {
+        path: "/edit-post/:id",
+        element: <EditPostView />,
       },
     ],
   },

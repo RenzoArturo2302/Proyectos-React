@@ -11,6 +11,7 @@ const CreatePostForm = ({
   handleSubmit,
   buttonState,
   handleContent,
+  msgButton,
 }) => {
   const categories = getCategories();
   const fileInputRef = useRef(null);
@@ -38,7 +39,7 @@ const CreatePostForm = ({
           <select
             name="category"
             id="category"
-            defaultValue={dataPost.category}
+            value={dataPost.category}
             onChange={handleData}
           >
             {categories.map((obj) => {
@@ -83,7 +84,7 @@ const CreatePostForm = ({
         </div>
         <div className="center">
           <button type="submit" disabled={buttonState}>
-            Crear publicación
+            {msgButton}
           </button>
         </div>
       </form>

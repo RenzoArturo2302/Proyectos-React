@@ -10,6 +10,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { signOut } from "firebase/auth";
 import { auth } from "../../config/Firebase";
 // Se utilizó ion-icons https://ionic.io/ionicons
+import imgUser from "../../assets/img/Default_pfp.png";
 
 const Sidebar = () => {
   const { darkModeState, setDarkModeState } = useContext(DarkLightMode);
@@ -114,7 +115,7 @@ const Sidebar = () => {
         <div className="usuario">
           {currentUser ? (
             <>
-              <img src="src\assets\img\Default_pfp.svg.png" alt="" />
+              <img src={imgUser} alt="" />
               <div className="info-usuario">
                 <div className="nombre-email">
                   <span className="nombre">{currentUser.displayName}</span>

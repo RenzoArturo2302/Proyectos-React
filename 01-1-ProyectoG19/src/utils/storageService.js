@@ -13,7 +13,6 @@ const storageServiceImg = async (image, dirName) => {
     const blob = await fetch(image).then((res) => res.blob());
     const result = await uploadBytes(refImg, blob);
     const urlImg = await getDownloadURL(refImg);
-    console.log(result);
 
     return urlImg;
   } catch (error) {
@@ -21,4 +20,10 @@ const storageServiceImg = async (image, dirName) => {
   }
 };
 
-export { storageServiceImg };
+function isFirebaseStorageUrl(url) {
+  const firebaseStoragePattern =
+    /^https:\/\/firebasestorage\.googleapis\.com\/v0\/b\/[^/]+\/o\/[^?]+\?alt=media&token=[^&]+$/;
+  return firebaseStoragePattern.test(url);
+}
+
+export { storageServiceImg, isFirebaseStorageUrl };
