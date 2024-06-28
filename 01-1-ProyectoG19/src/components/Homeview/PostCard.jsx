@@ -1,9 +1,9 @@
 import React from "react";
 
-const PostCard = ({ data }) => {
+const PostCard = ({ dataPost }) => {
   return (
     <div className="main-post-view">
-      {data.map((obj) => {
+      {dataPost.map((obj) => {
         return (
           <div className="card" key={obj.id}>
             <img src={obj.src} alt="" />
@@ -13,7 +13,7 @@ const PostCard = ({ data }) => {
                 <h2 className="category">{obj.category}</h2>
                 <h3 className="date">{obj.date}</h3>
               </div>
-              <h1 className="titulo">{obj.tittle}</h1>
+              <h1 className="titulo">{obj.title}</h1>
             </div>
           </div>
         );

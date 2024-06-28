@@ -8,6 +8,10 @@ button:disabled {
   cursor: not-allowed;
 }
 
+.loader {
+  margin-top: 50px;
+}
+
 .home-view {
   /* position: relative; */
   /* border: 1px solid red */
@@ -115,8 +119,10 @@ button:disabled {
   display: inline-block;
   overflow: hidden;
   font-weight: 600;
+  border-radius: 5px;
+
   /* border: 1px blue solid; */
-  padding: 0.1rem 0.25rem;
+  padding: 0.1rem 0.5rem;
   background-color: var(--buttons-color);
   /* color: var(--deepblue); */
   word-wrap: break-word;
@@ -216,19 +222,28 @@ button:disabled {
   height: 250px;
   background-color: var(--fondo-post);
   color: var(--font);
-
+  /* border: 2px red solid; */
   position: relative; /* color: var(--buttons-font-color); */
 }
 
-.user-post .container img {
-  width: 400px;
+.user-post .container .image-container {
+  /* border: 2px green solid; */
+  width: 35%;
   height: 250px;
+}
+
+.user-post .container .image-container img {
+  width: 100%;
+  height: 100%;
 }
 
 .user-post .container .contenido {
   /* border: 2px blue solid; */
+  width: 65%;
   height: 250px;
   padding: 10px;
+  overflow: hidden;
+  display: block;
 }
 
 .user-post .container .fondo {
@@ -236,13 +251,17 @@ button:disabled {
   position: absolute;
   z-index: 5;
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #27232f);
-  width: 400px;
+  width: 35%;
   height: 250px;
   bottom: 0;
   left: 0;
   transition: none;
 }
 
+.user-post .container .contenido .title-category-date {
+  /* border: 2px red solid; */
+  /* max-width: 100%; */
+}
 .user-post .container .contenido .title {
   display: inline-block;
   display: -webkit-box;
@@ -299,9 +318,13 @@ button:disabled {
 }
 
 /* MediaQueries  */
-@media (max-width: 1800px) {
-  .home-view .main-post-view {
+@media (max-width: 1900px) {
+  /* .home-view .main-post-view {
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  } */
+
+  .home-view .main-post-view {
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
   }
 }
 
@@ -310,10 +333,15 @@ button:disabled {
     width: 1000px;
   }
 }
+@media (max-width: 1540px) {
+  .home-view .main-post-view {
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+  }
+}
 
 @media (max-width: 1400px) {
   .home-view .main-post-view {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
   }
 
   .card {
@@ -346,9 +374,14 @@ button:disabled {
     left: 0;
   }
 
-  .user-post .container img {
+  .user-post .container .image-container {
     width: 100%;
     height: 350px;
+  }
+
+  .user-post .container .image-container img {
+    width: 100%;
+    height: 100%;
   }
 
   .user-post .container .contenido {
@@ -356,7 +389,7 @@ button:disabled {
   }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
   .user-post .reep {
     font-size: 1.25rem;
     text-align: center;
@@ -367,25 +400,37 @@ button:disabled {
   .user-post .container {
     width: 500px;
   }
-
+  .user-post .container .image-container {
+    width: 100%;
+  }
   .user-post .container .fondo {
-    width: 500px;
+    width: 100%;
   }
 }
 
-@media (max-width: 750px) {
+@media (max-width: 1170px) {
+  .home-view .main-post-view {
+    grid-template-columns: repeat(2, minmax(350px, 1fr));
+  }
+}
+
+@media (max-width: 1070px) {
+  .home-view .main-post-view {
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 950px) {
   .user-post .container {
     height: 500px;
     width: 370px;
   }
 
   .user-post .container .fondo {
-    width: 370px;
     height: 290px;
   }
 
-  .user-post .container img {
-    width: 100%;
+  .user-post .container .image-container {
     height: 350px;
   }
 
@@ -400,9 +445,11 @@ button:disabled {
   .user-post .container .contenido h3 {
     font-size: 0.8rem;
   }
-}
 
-@media (max-width: 650px) {
+  .home-view .main-post-view {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
   .home-view .form-view * {
     font-size: 1.35rem;
   }
@@ -434,11 +481,11 @@ button:disabled {
   }
 
   .card .metadatos .category-date {
-    font-size: 0.5rem;
+    font-size: 0.65rem;
   }
 
   .card .metadatos .titulo {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
   .prueba {
@@ -457,10 +504,6 @@ button:disabled {
 }
 
 @media (max-width: 360px) {
-  .home-view .main-post-view {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  }
-
   .card {
     height: 200px;
   }
@@ -481,8 +524,5 @@ button:disabled {
   .user-post .container .fondo {
     width: 300px;
     height: 230px;
-  }
-
-  .home-view .form-view button {
   }
 }

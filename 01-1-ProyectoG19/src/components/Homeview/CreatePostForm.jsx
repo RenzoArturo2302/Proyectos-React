@@ -12,26 +12,12 @@ const CreatePostForm = ({
   buttonState,
   handleContent,
 }) => {
-  // const [text, setText] = useState("");
-  // const textareaRef = useRef(null);
   const categories = getCategories();
   const fileInputRef = useRef(null);
 
   const handleButtonClick = () => {
     fileInputRef.current.click();
   };
-
-  // Para cambiar la altura del textarea
-  // useEffect(() => {
-  //   const adjustHeight = (element) => {
-  //     element.style.height = "auto";
-  //     element.style.height = element.scrollHeight + "px";
-  //   };
-
-  //   if (textareaRef.current) {
-  //     adjustHeight(textareaRef.current);
-  //   }
-  // }, [text]);
 
   return (
     <div className="form-view">
