@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { SidebarUnfolded } from "../contexts/SidebarUnfoldedContext";
-import { Audio, ColorRing } from "react-loader-spinner";
+
 import "../../src/styles.css";
 //
 import Saludo from "../components/Homeview/Saludo";
@@ -68,6 +68,7 @@ const MyPosts = () => {
           postsUser={postsUser}
           loading={loading}
           handleEliminar={handleEliminar}
+          currentUser={currentUser}
         />
       </div>
     </div>

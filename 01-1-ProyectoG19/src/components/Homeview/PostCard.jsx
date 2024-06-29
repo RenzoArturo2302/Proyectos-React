@@ -1,6 +1,8 @@
 import React from "react";
 import { convertDateToLocal } from "../../utils/utils";
 import { ColorRing } from "react-loader-spinner";
+import { Link } from "react-router-dom";
+
 const PostCard = ({ dataPost, loading }) => {
   return (
     <>
@@ -16,7 +18,12 @@ const PostCard = ({ dataPost, loading }) => {
                       <h2 className="category">{obj.category}</h2>
                       <h3 className="date">{convertDateToLocal(obj.date)}</h3>
                     </div>
-                    <h1 className="titulo">{obj.title}</h1>
+
+                    <h1 className="titulo">
+                      <Link to={`/post-view/${obj.uid}/${obj.id}`}>
+                        {obj.title}
+                      </Link>
+                    </h1>
                   </div>
                 </div>
               );

@@ -3,7 +3,7 @@ import { convertDateToLocal } from "../../utils/utils";
 import { ColorRing } from "react-loader-spinner";
 import { Link } from "react-router-dom";
 
-const PostListUser = ({ postsUser, loading, handleEliminar }) => {
+const PostListUser = ({ postsUser, loading, handleEliminar, currentUser }) => {
   return (
     <div className="user-post">
       <h2 className="reep">REVISE, EDITE o ELIMINE sus publicaciones</h2>
@@ -21,7 +21,11 @@ const PostListUser = ({ postsUser, loading, handleEliminar }) => {
                       <h2 className="category">{obj.category}</h2>
                       <h3>{convertDateToLocal(obj.date)}</h3>
                     </div>
-                    <h1 className="title">{obj.title}</h1>
+                    <h1 className="title">
+                      <Link to={`/post-view/${currentUser.uid}/${obj.id}`}>
+                        {obj.title}
+                      </Link>
+                    </h1>
                   </div>
                   <div className="edit-eliminate">
                     <Link to={`/edit-post/${obj.id}`} className="btn-edit">
