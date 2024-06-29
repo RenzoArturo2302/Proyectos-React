@@ -22,6 +22,10 @@ button:disabled {
 }
 
 .loader-up {
+  margin-top: 0px;
+}
+
+.loader-two {
   margin-top: 150px;
 }
 

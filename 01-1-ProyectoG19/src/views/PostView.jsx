@@ -57,7 +57,7 @@ const PostView = () => {
           ""
         )}
         {loading ? (
-          <div className="loader-up">
+          <div className="loader-two">
             <ColorRing
               visible={true}
               height="150"
