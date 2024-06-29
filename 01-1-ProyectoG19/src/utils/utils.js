@@ -13,7 +13,6 @@ const nameFileUUID = (image) => {
 
 const convertDateToLocal = (fechaYHora, zonaHoraria = "es-ES") => {
   const options = { day: "2-digit", month: "2-digit", year: "numeric" };
-
   const fecha = new Date(fechaYHora);
   return fecha.toLocaleDateString(zonaHoraria, options).replace(/\//g, "-");
 };

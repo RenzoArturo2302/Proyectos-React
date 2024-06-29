@@ -63,7 +63,6 @@ const MyPosts = () => {
     <div className={sidebarState ? "page min-page" : "page"}>
       <div className="home-view">
         <Saludo currentUser={currentUser} msg={"Check your posts!"} />
-
         <PostListUser
           postsUser={postsUser}
           loading={loading}
