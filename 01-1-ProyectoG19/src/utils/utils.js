@@ -16,7 +16,6 @@ const convertDateToLocal = (fechaYHora, zonaHoraria = "es-ES") => {
 
   const fecha = new Date(fechaYHora);
   return fecha.toLocaleDateString(zonaHoraria, options).replace(/\//g, "-");
-  return;
 };
 
 // Para que no se cierre inmediatamente al crear o editar un post.
